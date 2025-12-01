@@ -17,7 +17,7 @@ export default function Navigation() {
       <div className="flex justify-between items-center h-20 px-2 sm:px-4">
         <button onClick={() => scrollToSection('home')} className="flex items-center">
           <img
-            src="/WhatsApp Image 2025-11-17 at 22.38.54 copy.jpeg"
+            src="/whatsapp-image-2.jpeg"
             alt="PERIOD."
             className="h-20 w-20 object-cover cursor-pointer hover:opacity-80 transition-opacity"
           />

@@ -42,7 +42,7 @@ export default function Hero() {
           <div className="hidden lg:flex justify-start items-center">
             <div className="relative bg-period-burgundy-dark/40 rounded-[2rem] backdrop-blur-sm border border-white/10 overflow-hidden">
               <img
-                src="/WhatsApp Image 2025-11-11 at 16.45.13.jpeg"
+                src="/whatsapp-image-4.jpeg"
                 alt="PERIOD. Logo"
                 className="w-full h-full object-cover"
               />
