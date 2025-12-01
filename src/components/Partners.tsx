@@ -1,11 +1,8 @@
 export default function Partners() {
   const partners = [
-    { name: 'Bocconi University', logo: 'https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg?auto=compress&cs=tinysrgb&w=200' },
-    { name: 'Student Union', logo: 'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=200' },
-    { name: 'Women in Business', logo: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=200' },
-    { name: 'Social Impact Fund', logo: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=200' },
-    { name: 'Health Initiative', logo: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=200' },
-    { name: 'Education Alliance', logo: 'https://images.pexels.com/photos/3184340/pexels-photo-3184340.jpeg?auto=compress&cs=tinysrgb&w=200' },
+    { name: 'Bocconi Students Marketing Society', logo: '/Capture d\'écran 2025-12-01 à 15.00.34.png', link: null },
+    { name: 'Orizon Europe', logo: '/Final Orizon Europe with background.png', link: 'https://orizon.eu.com/' },
+    { name: 'Entrepreneurship Club Bocconi Students', logo: '/1637431672857.jpeg', link: null },
   ];
 
   const doubledPartners = [...partners, ...partners];
@@ -27,26 +24,47 @@ export default function Partners() {
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-100 to-transparent z-10"></div>
 
           <div className="flex animate-scroll">
-            {doubledPartners.map((partner, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 mx-8 bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
-                style={{ width: '200px' }}
-              >
+            {doubledPartners.map((partner, index) => {
+              const content = (
                 <div className="flex flex-col items-center justify-center h-full space-y-4">
-                  <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
+                  <div className="w-24 h-24 rounded-full overflow-hidden bg-white flex items-center justify-center p-2">
                     <img
                       src={partner.logo}
                       alt={partner.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   </div>
                   <p className="text-sm font-semibold text-gray-800 text-center">
                     {partner.name}
                   </p>
                 </div>
-              </div>
-            ))}
+              );
+
+              if (partner.link) {
+                return (
+                  <a
+                    key={index}
+                    href={partner.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-shrink-0 mx-8 bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
+                    style={{ width: '200px' }}
+                  >
+                    {content}
+                  </a>
+                );
+              }
+
+              return (
+                <div
+                  key={index}
+                  className="flex-shrink-0 mx-8 bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  style={{ width: '200px' }}
+                >
+                  {content}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
