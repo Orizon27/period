@@ -2,12 +2,12 @@ import { useRef } from 'react';
 
 export default function Partners() {
   const partners = [
-    { name: 'Women in Business - Bocconi', logo: '/wib___women_in_business_bocconi_female_students_association_logo.jpeg', link: null },
-    { name: 'TEF - Tech Europe Foundation', logo: '/tech_europe_foundation_logo.jpeg', link: null },
+    { name: 'Women in Business - Bocconi', logo: '/wib-logo.jpeg', link: null },
+    { name: 'TEF - Tech Europe Foundation', logo: '/tech-europe-logo.jpeg', link: null },
     { name: 'Bocconi Students Marketing Society', logo: '/1631311647680.jpeg', link: null },
     { name: 'Orizon Europe', logo: '/orizon-europe-logo.png', link: 'https://orizon.eu.com/' },
     { name: 'Entrepreneurship Club Bocconi Students', logo: '/1637431672857.jpeg', link: null },
-    { name: 'B4i - Bocconi for Innovation', logo: '/b4i_bocconi_for_innovation_logo.jpeg', link: null },
+    { name: 'B4i - Bocconi for Innovation', logo: '/b4i-logo.jpeg', link: null },
   ];
 
   const doubledPartners = [...partners, ...partners];
