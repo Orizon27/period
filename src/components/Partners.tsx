@@ -14,7 +14,9 @@ export default function Partners() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+  const [currentTranslate, setCurrentTranslate] = useState(0);
+  const [prevTranslate, setPrevTranslate] = useState(0);
+  const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
     const slider = scrollRef.current;
@@ -22,45 +24,72 @@ export default function Partners() {
 
     const handleMouseDown = (e: MouseEvent) => {
       setIsDragging(true);
-      setStartX(e.pageX - slider.offsetLeft);
-      setScrollLeft(slider.scrollLeft);
-      slider.style.animationPlayState = 'paused';
-    };
-
-    const handleMouseLeave = () => {
-      setIsDragging(false);
-      if (slider) {
-        slider.style.animationPlayState = 'running';
+      setStartX(e.clientX);
+      if (animationRef.current !== null) {
+        cancelAnimationFrame(animationRef.current);
       }
-    };
-
-    const handleMouseUp = () => {
-      setIsDragging(false);
-      if (slider) {
-        slider.style.animationPlayState = 'running';
+      slider.style.animationPlayState = 'paused';
+      const transform = window.getComputedStyle(slider).transform;
+      if (transform !== 'none') {
+        const matrix = new DOMMatrix(transform);
+        setPrevTranslate(matrix.m41);
+        setCurrentTranslate(matrix.m41);
       }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!isDragging) return;
       e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 2;
-      slider.scrollLeft = scrollLeft - walk;
+      const currentX = e.clientX;
+      const diff = currentX - startX;
+      const newTranslate = prevTranslate + diff;
+      setCurrentTranslate(newTranslate);
+
+      if (slider) {
+        slider.style.transform = `translateX(${newTranslate}px)`;
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+      setPrevTranslate(currentTranslate);
+      if (slider) {
+        slider.style.animation = 'none';
+        setTimeout(() => {
+          if (slider) {
+            slider.style.animation = '';
+          }
+        }, 10);
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (isDragging) {
+        setIsDragging(false);
+        setPrevTranslate(currentTranslate);
+        if (slider) {
+          slider.style.animation = 'none';
+          setTimeout(() => {
+            if (slider) {
+              slider.style.animation = '';
+            }
+          }, 10);
+        }
+      }
     };
 
     slider.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
     slider.addEventListener('mouseleave', handleMouseLeave);
-    slider.addEventListener('mouseup', handleMouseUp);
-    slider.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       slider.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
       slider.removeEventListener('mouseleave', handleMouseLeave);
-      slider.removeEventListener('mouseup', handleMouseUp);
-      slider.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [isDragging, startX, scrollLeft]);
+  }, [isDragging, startX, currentTranslate, prevTranslate]);
 
   return (
     <section className="py-16 bg-gradient-to-br from-slate-50 to-slate-100 overflow-hidden">
@@ -80,7 +109,7 @@ export default function Partners() {
 
           <div
             ref={scrollRef}
-            className="flex animate-scroll cursor-grab active:cursor-grabbing select-none"
+            className={`flex animate-scroll select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
             style={{ userSelect: 'none' }}
           >
             {doubledPartners.map((partner, index) => {
