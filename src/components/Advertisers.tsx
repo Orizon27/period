@@ -41,7 +41,7 @@ export default function Advertisers() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Why Partner With PERIOD.
+            Partner With PERIOD. as an Advertiser
           </h2>
           <p className="text-xl text-white/90 max-w-4xl mx-auto leading-relaxed">
             Reach a high-intent, opt-in student audience — responsibly.
