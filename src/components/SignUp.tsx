@@ -1,15 +1,18 @@
 import { Shield } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function SignUp() {
+  const { t } = useLanguage();
+
   return (
     <section id="signup" className="py-24 bg-gradient-to-br from-period-coral/10 to-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-period-burgundy mb-6">
-            Join the Movement
+            {t.signUp.title}
           </h2>
           <p className="text-xl text-gray-700 leading-relaxed">
-            Get your free menstrual products and join the first ad-funded menstrual access pilot at Bocconi University. Your participation helps us build a sustainable model that can spread across Italy and beyond.
+            {t.signUp.subtitle}
           </p>
         </div>
 

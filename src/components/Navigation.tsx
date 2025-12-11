@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -10,6 +12,10 @@ export default function Navigation() {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
     }
+  };
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'it' : 'en');
   };
 
   return (
@@ -26,26 +32,27 @@ export default function Navigation() {
         <div className="flex-1 flex justify-end max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => scrollToSection('home')} className="text-gray-700 hover:text-period-coral transition-colors">
-              Home
-            </button>
             <button onClick={() => scrollToSection('about')} className="text-gray-700 hover:text-period-coral transition-colors">
-              About
+              {t.nav.about}
             </button>
             <button onClick={() => scrollToSection('how-it-works')} className="text-gray-700 hover:text-period-coral transition-colors">
-              How It Works
+              {t.nav.howItWorks}
             </button>
-            <button onClick={() => scrollToSection('advertisers')} className="text-gray-700 hover:text-period-coral transition-colors">
-              For Advertisers
+            <button onClick={() => scrollToSection('partners')} className="text-gray-700 hover:text-period-coral transition-colors">
+              {t.nav.partners}
             </button>
             <button onClick={() => scrollToSection('faq')} className="text-gray-700 hover:text-period-coral transition-colors">
-              FAQ
+              {t.nav.faq}
+            </button>
+            <button onClick={() => scrollToSection('contact')} className="text-gray-700 hover:text-period-coral transition-colors">
+              {t.nav.contact}
             </button>
             <button
-              onClick={() => scrollToSection('signup')}
-              className="bg-period-coral text-white px-6 py-2.5 rounded-full hover:bg-period-coral-dark transition-all transform hover:scale-105"
+              onClick={toggleLanguage}
+              className="flex items-center gap-2 text-gray-700 hover:text-period-coral transition-colors"
             >
-              Sign Up
+              <Globe size={20} />
+              {language === 'en' ? 'IT' : 'EN'}
             </button>
           </div>
 
@@ -61,26 +68,27 @@ export default function Navigation() {
       {isMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100">
           <div className="px-4 py-4 space-y-3">
-            <button onClick={() => scrollToSection('home')} className="block w-full text-left py-2 text-gray-700">
-              Home
-            </button>
             <button onClick={() => scrollToSection('about')} className="block w-full text-left py-2 text-gray-700">
-              About
+              {t.nav.about}
             </button>
             <button onClick={() => scrollToSection('how-it-works')} className="block w-full text-left py-2 text-gray-700">
-              How It Works
+              {t.nav.howItWorks}
             </button>
-            <button onClick={() => scrollToSection('advertisers')} className="block w-full text-left py-2 text-gray-700">
-              For Advertisers
+            <button onClick={() => scrollToSection('partners')} className="block w-full text-left py-2 text-gray-700">
+              {t.nav.partners}
             </button>
             <button onClick={() => scrollToSection('faq')} className="block w-full text-left py-2 text-gray-700">
-              FAQ
+              {t.nav.faq}
+            </button>
+            <button onClick={() => scrollToSection('contact')} className="block w-full text-left py-2 text-gray-700">
+              {t.nav.contact}
             </button>
             <button
-              onClick={() => scrollToSection('signup')}
-              className="block w-full bg-period-coral text-white px-6 py-2.5 rounded-full text-center"
+              onClick={toggleLanguage}
+              className="flex items-center gap-2 py-2 text-gray-700"
             >
-              Sign Up
+              <Globe size={20} />
+              {language === 'en' ? 'Italiano' : 'English'}
             </button>
           </div>
         </div>

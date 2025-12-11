@@ -1,41 +1,31 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function FAQ() {
+  const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
     {
-      question: "Why are the products free?",
-      answer: "Because advertisers sponsor the cost of your monthly delivery. You never pay."
+      question: t.faq.q1,
+      answer: t.faq.a1
     },
     {
-      question: "Who funds the service?",
-      answer: "Brands and local advertisers whose offers are included in your delivery box."
+      question: t.faq.q2,
+      answer: t.faq.a2
     },
     {
-      question: "Are the products safe?",
-      answer: "Yes. We only use certified, high-quality products from EU-approved suppliers."
+      question: t.faq.q3,
+      answer: t.faq.a3
     },
     {
-      question: "Can I customize my pack?",
-      answer: "Yes — you choose pads, tampons, or a mix, and the flow level."
+      question: t.faq.q4,
+      answer: t.faq.a4
     },
     {
-      question: "Do I need to share personal data?",
-      answer: "Only the minimum needed for delivery and product preferences."
-    },
-    {
-      question: "Is my information protected?",
-      answer: "Absolutely. PERIOD. complies with GDPR. Sensitive data is encrypted and never shared with advertisers."
-    },
-    {
-      question: "Will advertisers see my name?",
-      answer: "No. Advertisers receive aggregated insights, never personal identities."
-    },
-    {
-      question: "Who is PERIOD.?",
-      answer: "A Bocconi-founded student startup working to eliminate menstrual inequality through an ad-funded access model."
+      question: t.faq.q5,
+      answer: t.faq.a5
     }
   ];
 
@@ -48,11 +38,8 @@ export default function FAQ() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-period-burgundy mb-6">
-            Frequently Asked Questions
+            {t.faq.title}
           </h2>
-          <p className="text-xl text-gray-700">
-            Everything you need to know about PERIOD.
-          </p>
         </div>
 
         <div className="space-y-4">

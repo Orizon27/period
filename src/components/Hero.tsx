@@ -1,6 +1,8 @@
 import { ChevronRight } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Hero() {
+  const { t } = useLanguage();
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -17,24 +19,24 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-white space-y-8">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              A new model for menstrual access
+              {t.hero.title}
             </h1>
             <p className="text-xl md:text-2xl lg:text-3xl text-white/90 leading-relaxed max-w-xl">
-              free products, funded entirely by brands
+              {t.hero.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => scrollToSection('signup')}
                 className="group bg-white text-period-coral px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-50 transition-all transform hover:scale-105 flex items-center justify-center"
               >
-                Sign Up for Your Free Products
+                {t.hero.cta}
                 <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
               </button>
               <button
                 onClick={() => scrollToSection('how-it-works')}
                 className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all"
               >
-                Learn How It Works
+                {t.hero.learnMore}
               </button>
             </div>
           </div>
