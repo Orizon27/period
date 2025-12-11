@@ -159,7 +159,7 @@ export const translations = {
       ]
     },
     joinMovement: {
-      title: 'Be part of the first ad-funded menstrual access system.',
+      title: 'Be part of our ad-funded menstrual access system.',
       button: 'Get Started'
     },
     contact: {
@@ -387,7 +387,7 @@ export const translations = {
       ]
     },
     joinMovement: {
-      title: 'Fai parte del primo sistema di accesso mestruale finanziato dalla pubblicità.',
+      title: 'Fai parte del nostro sistema di accesso mestruale finanziato dalla pubblicità.',
       button: 'Inizia'
     },
     contact: {
